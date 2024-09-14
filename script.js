@@ -274,10 +274,7 @@ let scroll;
                     types: "words, chars",
                     tagName: "span"
                 });
-
-                // Link timelines to scroll position
                 function createScrollTrigger(triggerElement, timeline) {
-                    // Reset tl when scroll out of view past bottom of screen
                     ScrollTrigger.create({
                         trigger: triggerElement,
                         start: "top bottom",
@@ -286,32 +283,14 @@ let scroll;
                             timeline.pause();
                         }
                     });
-                    // Play tl when scrolled into view
                     ScrollTrigger.create({
                         trigger: triggerElement,
-                        start: "top 90%",
+                        start: "top 100%",
                         onEnter: () => timeline.play()
                     });
                 }
 
-                // Link timelines to scroll position
-                function archiveLetters(triggerElement, timeline) {
-                    // Reset tl when scroll out of view past bottom of screen
-                    ScrollTrigger.create({
-                        trigger: $('.section.post-archive'),
-                        start: "start bottom",
-                        onEnterBack: () => {
-                            timeline.progress(0);
-                            timeline.pause();
-                        }
-                    });
-                    // Play tl when scrolled into view
-                    ScrollTrigger.create({
-                        trigger: $('.section.post-archive'),
-                        start: "-500 bottom",
-                        onEnter: () => timeline.play()
-                    });
-                }
+               
 
                 $("[letters-slide-down]").each(function(index) {
                     let tl = gsap.timeline({
@@ -400,10 +379,10 @@ let scroll;
                     duration: 1
                 })
                 eventCards.fromTo(triggerElement, {
-                    boxShadow: '0rem 0rem 0rem 0rem rgba(0,0,0,0)',
+                    boxShadow: '0rem 0rem 0rem 0rem rgba(0,0,0,1)',
                     duration: 1
                 }, {
-                    boxShadow: '0rem -4rem 10rem 0rem rgba(0,0,0,0.25)',
+                    boxShadow: '0rem -4rem 10rem 0rem rgba(0,0,0,1)',
                     duration: 1
                 })
             });
@@ -450,58 +429,7 @@ let scroll;
                 ease: customEase,
             }, 0);
 
-            //Variables for Archive Section
-            const DOM = {
-                sections: {
-                    columns: document.querySelector('.section.is-archive'),
-                    showcase: document.querySelector('.section.post-archive'),
-                },
-                columns: document.querySelectorAll('.section.is-archive > .columns'),
-                columnWraps: document.querySelectorAll('.section.is-archive .column-wrap'),
-                itemsWrappers: document.querySelectorAll('.section.is-archive .column-wrap .column'),
-                items: document.querySelectorAll('.section.is-archive .column-item'),
-                images: document.querySelectorAll('.section.is-archive .column-item-img'),
-            };
-
-            //Archive section
-            const archive = () => {
-                gsap.timeline({
-                    scrollTrigger: {
-                        trigger: ".section.pre-archive",
-                        start: "bottom bottom",
-                        end: 'max',
-                        scrub: true,
-                    }
-                }).addLabel('start', 'bottom bottom')
-                .to(DOM.sections.columns, {
-                    ease: 'none',
-                    startAt: {
-                        scale: 1.2
-                    },
-                    startAt: {
-                        zIndex: -1
-                    },
-                    scale: 1,
-                    zIndex: -1,
-                }, 'start')
-                .to(DOM.items, {
-                    scrollTrigger: {
-                        scrub: true
-                    },
-                    ease: 'power4.inOut',
-                    startAt: {
-                        opacity: 0,
-                    },
-                    opacity: 1,
-                    yoyo: true,
-                    repeat: 1,
-                }, 'start').to(DOM.columnWraps, {
-                    ease: 'none',
-                    yPercent: pos => pos * -10 - 10
-                }, 'start')
-            }
-            ;
-            archive();
+           
 
             //Awards Image preview velocity based animation
             Observer.create({
