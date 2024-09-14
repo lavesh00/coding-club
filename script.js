@@ -429,8 +429,7 @@ let scroll;
                 ease: customEase,
             }, 0);
 
-             document.addEventListener("DOMContentLoaded", function() {
-            gsap.registerPlugin(Observer, ScrollTrigger);
+           
         
             Observer.create({
                 target: window,
@@ -464,4 +463,3 @@ let scroll;
                     });
                 }
             });
-             });
