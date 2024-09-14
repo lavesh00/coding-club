@@ -429,13 +429,14 @@ let scroll;
                 ease: customEase,
             }, 0);
 
-           
-
+            document.addEventListener("DOMContentLoaded", function() {
+                gsap.registerPlugin(Observer);
             //Awards Image preview velocity based animation
             Observer.create({
                 target: window,
                 type: "pointer",
                 onMove: (self) => {
+                    if (window.pageYOffset > 0) {
                     let velocity = self.velocityX * 0.01;
                     let amount = gsap.utils.clamp(-15, 15, velocity);
                     let duration = Math.abs(amount * 0.08);
@@ -462,5 +463,24 @@ let scroll;
                         ease: "power1",
                         duration: 0.4
                     });
+                }
+            }
+            });
+        });
+            document.addEventListener('touchmove', function(event) {
+                if (event.touches.length > 1) {
+                    event.preventDefault();
+                }
+            }, { passive: false });
+            ScrollTrigger.matchMedia({
+                // Apply settings for larger screens
+                "(min-width: 768px)": function() {
+                    // ScrollTrigger setup here for desktop
+                },
+            
+                // Apply mobile-specific settings
+                "(max-width: 767px)": function() {
+                    // Adjust for mobile, or disable ScrollTrigger if necessary
+                    ScrollTrigger.kill(); // Disable scroll triggers for mobile to see if it's causing the issue
                 }
             });
