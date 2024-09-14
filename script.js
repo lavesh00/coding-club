@@ -263,7 +263,7 @@ let scroll;
             });
 
             //By Timothy Ricks
-            window.addEventListener("DOMContentLoaded", (event) => {
+           window.addEventListener("DOMContentLoaded", (event) => {
                 // Split text into spans
                 let typeSplit = new SplitType("[text-split]",{
                     types: "words, chars",
@@ -280,8 +280,9 @@ let scroll;
                     });
                     ScrollTrigger.create({
                         trigger: triggerElement,
-                        start: "top 100%",
-                        onEnter: () => timeline.play()
+                        start: "top 80%",
+                        onEnter: () => timeline.play(),
+                        once: true,
                     });
                 }
 
@@ -301,51 +302,6 @@ let scroll;
                     });
                     createScrollTrigger($(this), tl);
                 });
-
-                $("[archive-slide-down]").each(function(index) {
-                    let tl = gsap.timeline({
-                        paused: true
-                    });
-                    tl.from($(this).find(".char"), {
-                        yPercent: -120,
-                        duration: 0.3,
-                        ease: "power1.out",
-                        stagger: {
-                            amount: 0.5
-                        }
-                    });
-                    archiveLetters($(this), tl);
-                });
-
-                $("[words-slide-down]").each(function(index) {
-                    let tl = gsap.timeline({
-                        paused: true
-                    });
-                    tl.from($(this).find(".char"), {
-                        opacity: 0,
-                        yPercent: -100,
-                        duration: 0.5,
-                        ease: "power1.out",
-                        stagger: {
-                            amount: 0.5
-                        }
-                    });
-                    createScrollTrigger($(this), tl);
-                });
-
-                $("[fade-up]").each(function(index) {
-                    let tl = gsap.timeline({
-                        paused: true
-                    });
-                    tl.from($(this), {
-                        opacity: 0,
-                        yPercent: 100,
-                        duration: 0.5,
-                        ease: "power1.out"
-                    });
-                    createScrollTrigger($(this), tl);
-                });
-
                 // Avoid flash of unstyled content
                 gsap.set("[text-split]", {
                     opacity: 1
