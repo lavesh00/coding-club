@@ -432,74 +432,35 @@ let scroll;
              document.addEventListener("DOMContentLoaded", function() {
             gsap.registerPlugin(Observer, ScrollTrigger);
         
-            // Awards Image preview velocity-based animation
             Observer.create({
                 target: window,
-                type: "touch",
+                type: "pointer",
                 onMove: (self) => {
-                    if (window.pageYOffset > 0) {
-                        // Calculate velocity-based values
-                        let velocity = self.velocityX * 0.01;
-                        let amount = gsap.utils.clamp(-15, 15, velocity);
-                        let duration = Math.abs(amount * 0.08);
-                        let clampedDuration = gsap.utils.clamp(0.1, 0.9, duration);
-        
-                        // Create first timeline for the image
-                        let tl = gsap.timeline();
-                        tl.to(".awards_img-width", {
-                            rotate: amount + "deg",
-                            ease: "none",
-                            duration: clampedDuration,  // Use clamped duration
-                            overwrite: true
-                        }).to(".awards_img-width", {
-                            rotate: "0deg",
-                            ease: "power1",
-                            duration: 0.4
-                        });
-        
-                        // Create second timeline for the footer emoji
-                        let tlTwo = gsap.timeline();
-                        tlTwo.to(".footer-emoji", {
-                            rotate: amount + "deg",
-                            ease: "none",
-                            duration: clampedDuration,  // Use clamped duration
-                            overwrite: true
-                        }).to(".footer-emoji", {
-                            rotate: "0deg",
-                            ease: "power1",
-                            duration: 0.4
-                        });
-                    }
+                    let velocity = self.velocityX * 0.01;
+                    let amount = gsap.utils.clamp(-15, 15, velocity);
+                    let duration = Math.abs(amount * 0.08);
+                    let clampedDuration = gsap.utils.clamp(0.1, 0.9, duration);
+                    let tl = gsap.timeline();
+                    let tlTwo = gsap.timeline();
+                    tl.to(".awards_img-width", {
+                        rotate: amount + "deg",
+                        ease: "none",
+                        duration: 0.2,
+                        overwrite: true
+                    }).to(".awards_img-width", {
+                        rotate: "0deg",
+                        ease: "power1",
+                        duration: 0.4
+                    }),
+                    tlTwo.to(".footer-emoji", {
+                        rotate: amount + "deg",
+                        ease: "none",
+                        duration: 0.2,
+                        overwrite: true
+                    }).to(".footer-emoji", {
+                        rotate: "0deg",
+                        ease: "power1",
+                        duration: 0.4
+                    });
                 }
             });
-        
-            // Prevent overscroll bounce (works for iOS Safari)
-            // If you're facing scroll issues, try removing this block to see if it helps.
-            /*
-            document.addEventListener('touchmove', function(event) {
-                if (event.touches.length > 1) {
-                    event.preventDefault();  // This might cause issues on iOS
-                }
-            }, { passive: false });
-            */
-        
-            // ScrollTrigger settings based on media queries
-            ScrollTrigger.matchMedia({
-                // Apply settings for larger screens
-                "(min-width: 768px)": function() {
-                    // ScrollTrigger setup here for desktop
-                },
-        
-                // Apply mobile-specific settings
-                "(max-width: 767px)": function() {
-                    // Disable ScrollTrigger for mobile to see if it's causing the issue
-                    ScrollTrigger.kill();  // Comment this out if causing problems
-                }
-            });
-        
-        });
-
-        // Disable animations and certain behaviors on mobile if needed
-        if (window.innerWidth < 768) {
-            // You can disable Observer or ScrollTrigger logic here if necessary
-        }
