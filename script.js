@@ -69,6 +69,15 @@ let scroll;
                   formWrapper.style.display = 'none';
                   contentWrapper.classList.remove('blur-background'); // Remove blur effect from the background
                 }
+              }function hidecard(event) {
+                // Hide the form wrapper if the click is outside the form
+                if (!event.target.closest('.form')) {
+                  const formWrapper = document.querySelector('.Card-wrapper');
+                  const contentWrapper = document.getElementById('page-wrapper');
+            
+                  formWrapper.style.display = 'none';
+                  contentWrapper.classList.remove('blur-background'); // Remove blur effect from the background
+                }
               }
             
               function showSignUp() {
