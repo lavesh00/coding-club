@@ -276,13 +276,14 @@ let scroll;
                         onLeaveBack: () => {
                             timeline.progress(0);
                             timeline.pause();
-                        }
+                        },
+                        once:true,
                     });
                     ScrollTrigger.create({
                         trigger: triggerElement,
-                        start: "top 80%",
+                        start: "top 100%",
                         onEnter: () => timeline.play(),
-                        once: true,
+                        
                     });
                 }
 
@@ -298,10 +299,59 @@ let scroll;
                         ease: "power1.out",
                         stagger: {
                             amount: 0.5
-                        }
+                        },
+                        once : true, 
                     });
                     createScrollTrigger($(this), tl);
                 });
+
+                $("[archive-slide-down]").each(function(index) {
+                    let tl = gsap.timeline({
+                        paused: true
+                    });
+                    tl.from($(this).find(".char"), {
+                        yPercent: -120,
+                        duration: 0.3,
+                        ease: "power1.out",
+                        stagger: {
+                            amount: 0.5
+                        },
+                        once : true, 
+                    });
+                    archiveLetters($(this), tl);
+                });
+
+                $("[words-slide-down]").each(function(index) {
+                    let tl = gsap.timeline({
+                        paused: true
+                    });
+                    tl.from($(this).find(".char"), {
+                        opacity: 0,
+                        yPercent: -100,
+                        duration: 0.5,
+                        ease: "power1.out",
+                        stagger: {
+                            amount: 0.5
+                        },
+                        once : true, 
+                    });
+                    createScrollTrigger($(this), tl);
+                });
+
+                $("[fade-up]").each(function(index) {
+                    let tl = gsap.timeline({
+                        paused: true
+                    });
+                    tl.from($(this), {
+                        opacity: 0,
+                        yPercent: 100,
+                        duration: 0.5,
+                        ease: "power1.out",
+                        once : true, 
+                    });
+                    createScrollTrigger($(this), tl);
+                });
+
                 // Avoid flash of unstyled content
                 gsap.set("[text-split]", {
                     opacity: 1
