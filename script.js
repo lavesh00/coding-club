@@ -227,12 +227,7 @@ let scroll;
                 let triggerElement = $(this);
                 let targetElement = $(".footer-bg");
                 let tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: triggerElement,
-                        start: "top 40%",
-                        end: "bottom bottom",
-                        scrub: 1
-                    }
+                    
                 });
                 tl.fromTo(targetElement, {
                     width: "100vw",
@@ -430,7 +425,8 @@ let scroll;
             }, 0);
 
            
-        
+
+            //Awards Image preview velocity based animation
             Observer.create({
                 target: window,
                 type: "pointer",
