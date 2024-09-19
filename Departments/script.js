@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
             preloader.style.visibility = 'hidden'; // Hides the preloader
             content.classList.remove('hidden'); // Displays the content
             document.body.style.overflow = 'auto'; // Allows scrolling
-        }, 3000); // Adjust the timeout as needed
+        }, 2500); // Adjust the timeout as needed
     } else {
         console.error('Preloader or content element not found');
     }
