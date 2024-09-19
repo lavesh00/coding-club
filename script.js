@@ -200,7 +200,7 @@ let scroll;
                     green: ['is-green', 'green-bg'],
                     brown: ['is-brown', 'brown-bg'],
                 };
-                const elements = ['.loader-wrapper', '.section', 'body', '.menu-overlay', '.menu-line'];
+                const elements = ['.loader-wrapper', '.section', 'body', '.menu-overlay', '.menu-line','.form','.field'];
 
                 elements.forEach(el => {
                     $(el).removeClass('is-black is-green is-brown');
@@ -263,7 +263,7 @@ let scroll;
             });
 
             //By Timothy Ricks
-           window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("DOMContentLoaded", (event) => {
                 // Split text into spans
                 let typeSplit = new SplitType("[text-split]",{
                     types: "words, chars",
@@ -465,3 +465,6 @@ let scroll;
                     });
                 }
             });
+
+            
+            
