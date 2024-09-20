@@ -11,6 +11,9 @@ body {
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary {
     display: block
 }
+#Profile{
+    display:none;
+}
 .Card-wrapper {
     position: fixed; /* Fixed position relative to the viewport */
     top: 0;
@@ -24,12 +27,27 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,secti
     z-index: 1000; /* Ensure it is above other content */
   }
 .card {
-    
+    height:25%;
+    width: 80%;
     max-width: 320px;
     border-radius: 1rem;
-    background-color: rgba(31, 41, 55, 1);
+    background-color: var(--bg-black); /* Default background color */
     padding: 1rem;
   }
+  .card.is-black{
+    background-color: var(--bg-black);
+    color: var(--white);
+}
+
+.card.is-green{
+    background-color: var(--green);
+    color: #e6f3ed;
+}
+
+.card.is-brown{
+    background-color: var(--brown);
+    color: #e7dddb;
+}
   
   .infos {
     display: flex;
