@@ -4061,7 +4061,7 @@ ul {
 
 .loader-text {
     width: 100%;
-    height: 1em;
+    height: 1.5em;
     text-transform: uppercase;
     align-items: flex-end;
     font-family: Porlane,sans-serif;
